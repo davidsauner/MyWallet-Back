@@ -18,7 +18,7 @@ try {
     } catch (err) {
     console.log("Erro no mongo.conect", err.message);
     }
-    db = mongoClient.db();
+        db = mongoClient.db();
 
 
 
