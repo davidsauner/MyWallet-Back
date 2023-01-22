@@ -7,8 +7,6 @@ dotenv.config();
 
 const app = express();
 
-import authRoutes from "./routes/authRoutes.js";
-
 
 
 
