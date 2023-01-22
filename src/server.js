@@ -3,14 +3,20 @@ import express from "express";
 import { MongoClient, ObjectId } from "mongodb";
 import dotenv from "dotenv";
 import cors from "cors";
-import joi from "joi";
+dotenv.config();
 
 const app = express();
-dotenv.config();
+
+import authRoutes from "./routes/authRoutes.js";
+
+
+
+
+
 app.use(cors());
 app.use(express.json());
 
-const mongoClient = new MongoClient(process.env.MONGO_URI);
+const mongoClient = new MongoClient(process.env.DATABASE_URL);
 let db;
 
 try {
@@ -20,7 +26,14 @@ try {
     }
         db = mongoClient.db();
 
-
+        app.post("/sign-up", async (req, res) => {
+            // nome, email, senha
+        const user = req.body;
+        
+        await db.collection('users').insertOne(user) 
+    
+        res.sendStatus(201);
+    });
 
 
 
